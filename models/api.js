@@ -9,5 +9,9 @@ module.exports = {
     locate: async function(q) {
         const latLng = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${q}&key=${process.env.APIKEY}`)
         return latLng.data
+    },
+    reverseLocate: async function(lat, lng) {
+        const latLng = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.APIKEY}`)
+        return latLng.data
     }
 }
