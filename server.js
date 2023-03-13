@@ -6,7 +6,7 @@ const connectLiveReload = require("connect-livereload");
 const methodOverride = require('method-override');
 const app = express();
 const db = require('./models');
-
+const bathroomsRoute = require('./controllers/bathrooms')
 const liveReloadServer = livereload.createServer();
 liveReloadServer.server.once("connection", () => {
     setTimeout(() => {
@@ -21,7 +21,7 @@ app.use(express.static('public'))
 app.use(connectLiveReload());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-
+app.use('/bathroom', bathroomsRoute)
 
 app.get('/', (req, res) => {
    
@@ -67,7 +67,18 @@ app.get('/test', (req, res) => {
         })
    
 })
+app.get('/seed', function (req, res) {
+    db.Bathrooms.deleteMany({})
+        .then(deletedProducts => {
+            console.log(`Deleted ${deletedProducts.length} prodcuts`)
 
+            db.Bathrooms.insertMany(db.seedBathrooms)
+                .then(productsAdded => {
+                    console.log(`Added ${productsAdded.length} things`)
+                    res.json(productsAdded)
+                })
+        })
+})
 
 app.listen(process.env.PORT, function () {
     console.log('Express is listening to port', process.env.PORT);

@@ -1,9 +1,11 @@
 
-let map;
-const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBybHZ3Sqy6xYgo-a0VaXMccYAqzkfYEIk&callback=initMap`;
-        script.async = true;
 
+let map;
+let apiKey;
+const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+        script.async = true;
+        // AIzaSyBybHZ3Sqy6xYgo-a0VaXMccYAqzkfYEIk
 
         // Append the 'script' element to 'head'
         document.head.appendChild(script);
