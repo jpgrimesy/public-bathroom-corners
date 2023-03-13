@@ -3,17 +3,13 @@ let map;
 const script = document.createElement('script');
         script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBybHZ3Sqy6xYgo-a0VaXMccYAqzkfYEIk&callback=initMap`;
         script.async = true;
-
-
-        // Append the 'script' element to 'head'
-        document.head.appendChild(script);
+document.head.appendChild(script);
 let myPlace= [];
+let centerLoc;
+
 function center() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: {
-        lat: 33.964870,
-        lng: -117.622340
-    },
+    center: centerLoc,
     zoom: 11,
   });
  
@@ -27,17 +23,15 @@ function center() {
         lat: result.lat,
         lng: result.lng
     }
-   console.log(myPlace.indexOf(result))
-   window.setTimeout(() => {
+    window.setTimeout(() => {
         const toiletMarker = new google.maps.Marker({
             position: loc,
             map: map,
             icon: '/images/toilet.png',
             animation: google.maps.Animation.DROP
         })
-   }, myPlace.indexOf(result) * 200)
-    
-  })
+    }, myPlace.indexOf(result) * 200)
+})
 
     // // Try HTML5 geolocation.
     // if (navigator.geolocation) {

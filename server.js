@@ -29,25 +29,39 @@ app.get('/', (req, res) => {
     res.render('home', {
         
         lat: 33.965,
-        lng: -109.644
+        lng: -109.644,
+        apiKey: process.env.APIKEY
     })
 })
+app.get('/index', (req, res) => {
+    res.render('index')
+})
 app.get('/test', (req, res) => {
-    db.api.locate('8367%20forest%20park%2CChino%2CCA')
+    db.api.locate(req.query.q)
         .then(async data => {
+            const center = {
+                lat: data.results[0].geometry.location.lat,
+                lng: data.results[0].geometry.location.lng
+            }
             db.api.nearby(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
             .then(async results => {
                
                const coordinates = []
                for(let result of results.results) {
+                const address = await db.api.reverseLocate(result.geometry.location.lat, result.geometry.location.lng)
+               
                 const loc = {
                     lat: result.geometry.location.lat,
-                    lng: result.geometry.location.lng
+                    lng: result.geometry.location.lng,
+                    name: result.name,
+                    id: result.place_id,
+                    address: address.results[0].formatted_address
                 }
                 coordinates.push(loc)
                }
                res.render('search', {
-                results: coordinates
+                results: coordinates,
+                center: center
                })
             })
         })

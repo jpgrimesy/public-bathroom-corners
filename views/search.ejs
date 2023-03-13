@@ -12,13 +12,19 @@
 <body>
    
     <div id="map"></div>
-
+    <div id="info-container">
+        <% for(let result of results){ %>
+            <li><%= result.name %></li>
+            <li><%= result.id %></li>
+            <li><%= result.address %></li>
+        <% } %>
+    </div>
 
     <script>
        
       
         document.addEventListener('DOMContentLoaded', function() {
-            
+                centerLoc = <%- JSON.stringify(center) %>
                 for(let result of <%- JSON.stringify(results) %>) {
                     myPlace.push(result)
                 }
