@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%= bathroom.name %></h1>
+    <p><%= bathroom.address %></p>
+    
+    <% if(bathroom.reviews.length > 0 && bathroom.reviews.length > 3) { %>
+        <% for(let i = 0; i < 3; i++) { %>
+            <p><%= bathroom.reviews[i].title %></p>
+            <p><%= bathroom.reviews[i].avgRating %></p>
+            <p><%= bathroom.reviews[i].content %></p>
+        <% } %>
+        <a href="../reviews/<%= bathroom.id %>">see all reviews</a>
+    <% } else if(bathroom.reviews.length > 0){ %>
+        <% for(let i = 0; i < bathroom.reviews.length; i++) { %>
+            <p><%= bathroom.reviews[i].title %></p>
+            <p><%= bathroom.reviews[i].avgRating %></p>
+            <p><%= bathroom.reviews[i].content %></p>
+        <% } %>
+        <a href="../reviews/<%= bathroom.id %>">see all reviews</a>
+    <% } else { %>
+    No reviews yet. Be the first to leave a <a href="../reviews/new-post/<%= bathroom.id %>">review</a>!
+    <% } %>
+</body>
+</html>

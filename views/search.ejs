@@ -14,11 +14,13 @@
     <div id="map"></div>
     <div id="info-container">
         <% for(let result of results){ %>
-            <li><%= result.name %></li>
-            <li><%= result.address %></li>
-            <li><form method="POST" action="/bathroom/create/<%= result.id %>">
-            <input type="submit" value="details">
-            </form></li>
+            <div class="bathroom-details">
+                <li><%= result.name %></li>
+                <li><%= result.address %></li>
+                <form method="POST" action="/bathroom/create/<%= result.id %>">
+                <input type="submit" value="details">
+                </form>
+            </div>  
         <% } %>
     </div>
 

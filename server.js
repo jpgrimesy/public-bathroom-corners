@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const app = express();
 const db = require('./models');
 const bathroomsRoute = require('./controllers/bathrooms')
+const reviewsRoute = require('./controllers/reviews')
 const liveReloadServer = livereload.createServer();
 liveReloadServer.server.once("connection", () => {
     setTimeout(() => {
@@ -22,6 +23,7 @@ app.use(connectLiveReload());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use('/bathroom', bathroomsRoute)
+app.use('/reviews', reviewsRoute)
 
 app.get('/', (req, res) => {
    
@@ -30,7 +32,6 @@ app.get('/', (req, res) => {
         
         lat: 33.965,
         lng: -109.644,
-        apiKey: process.env.APIKEY
     })
 })
 app.get('/index', (req, res) => {
@@ -49,7 +50,12 @@ app.get('/test', (req, res) => {
                const coordinates = []
                for(let result of results.results) {
                 const address = await db.api.reverseLocate(result.geometry.location.lat, result.geometry.location.lng)
+                const rating = await db.Bathrooms.find({googleId: result.place_id})
                
+                
+                
+               
+
                 const loc = {
                     lat: result.geometry.location.lat,
                     lng: result.geometry.location.lng,

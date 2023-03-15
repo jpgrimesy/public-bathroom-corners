@@ -29,8 +29,13 @@ function center() {
             map: map,
             icon: '/images/toilet.png',
             animation: google.maps.Animation.DROP
+        });
+        toiletMarker.addListener('click', () => {
+            map.setZoom(13)
+            map.setCenter(toiletMarker.getPosition())
         })
     }, myPlace.indexOf(result) * 200)
+    
 })
 
     // // Try HTML5 geolocation.
