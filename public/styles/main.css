@@ -1,21 +1,69 @@
-/* 
- * Always set the map height explicitly to define the size of the div element
- * that contains the map. 
- */
- #map {
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+#map {
     height: 50%;
     width: 50%;
-  }
-  
-  /* 
-   * Optional: Makes the sample page fill the window. 
-   */
-  html,
-  body {
+}
+body,html {
     height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  .bathroom-details {
-    border: 2px solid red;
-  }
+    width: 100%;
+    background-color: #080809;
+    text-align: center;
+    margin: 0 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+nav {
+    background-color: #1B2413;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+#logo {
+    position: relative;
+    margin: 0 auto;
+    background-color: #5F6556;
+    width: 220px;
+ 
+    border-radius: 10px;
+    display: inline-block;
+}
+.nav-link {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    margin-right: 20px;    
+}
+.nav-link:hover {
+    color: #080809;
+    background-color: #5F6556;
+}
+#nav-links {
+    align-self: flex-end;
+    
+   
+}
+.search {
+    margin-top: clamp(200px, 25vh, 250px);
+}
+.search-btn {
+    display: inline;
+}
+input[type=search] {
+    width: 400px;
+    height: 35px;
+    font-size: 24px;
+    border-radius: 25px;
+    padding-left: 25px;
+}
+input[type=submit] {
+    color: white;
+    height: 30px;
+    font-size: 16px;
+    background-color: #433F3E;
+    border: none;
+    margin: 8px 15px;
+    font-family: inherit;
+}
+input[type=submit]:hover {
+    background-color: #292825;
+}

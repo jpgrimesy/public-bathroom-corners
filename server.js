@@ -26,13 +26,7 @@ app.use('/bathroom', bathroomsRoute)
 app.use('/reviews', reviewsRoute)
 
 app.get('/', (req, res) => {
-   
-
-    res.render('home', {
-        
-        lat: 33.965,
-        lng: -109.644,
-    })
+   res.render('index')
 })
 app.get('/index', (req, res) => {
     res.render('index')

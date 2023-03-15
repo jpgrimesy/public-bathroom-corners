@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../models')
-const bathroom = require('../models/bathroom')
 
 router.get('/:id', (req, res) => {
     db.Bathrooms.findById(req.params.id)
@@ -11,6 +10,7 @@ router.get('/:id', (req, res) => {
             })
         })
 })
+
 router.get('/:bathId/:reviewId', (req, res) => {
     db.Bathrooms.findById(req.params.bathId)
         .then(bathroom => {
@@ -20,6 +20,7 @@ router.get('/:bathId/:reviewId', (req, res) => {
             })
         })
 })
+
 router.get('/new-post/:id', (req, res) => {
     db.Bathrooms.findById(req.params.id)
         .then(bathroom => {
@@ -28,6 +29,7 @@ router.get('/new-post/:id', (req, res) => {
             })
         })
 })
+
 router.post('/post/:id', (req, res) => {
     db.Bathrooms.findByIdAndUpdate(
         req.params.id,
@@ -100,4 +102,5 @@ router.delete('/delete/:bathId/:reviewId', (req, res) => {
     })
     .catch(err => console.log(err))
 })
+
 module.exports = router

@@ -1,13 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../models')
-const bathroom = require('../models/bathroom')
-
 
 router.get('/', (req, res) => {
     db.Bathrooms.find({})
         .then(results => res.json(results))
 })
+
 router.get('/:id', (req, res) => {
     db.Bathrooms.find({ googleId: req.params.id })
         .then(bathroom =>  {
@@ -37,6 +36,7 @@ router.post('/create/:id', (req, res) => {
         })
     .catch(err => console.log(err))
 })
+
 router.put('/update/:id', (req, res) => {
     db.Bathrooms.findById(req.params.id)
         .then(bathroom => {

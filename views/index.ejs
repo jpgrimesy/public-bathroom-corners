@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <%- include('./partials/head.ejs', { title: 'Public Bathroom Corners'}) %>
 <body>
-    <form method="get" action="/test">
-        <input id="search-bar" type="search" placeholder="Search" name="q"required>
-        <input type="submit" value="search"></form>
+    <%- include('./partials/nav.ejs') %>  
+    <div class="search">
+        <form class="search-btn" method="get" action="/test">
+            <input id="search-bar" type="search" placeholder="Enter Address" name="q"required>
+            <br />
+            <input type="submit" value="Search Around Address">
+        </form>
+        <form class="search-btn" method="get">
+            <input type="submit" value="Near Me">
+        </form>
+    </div>
 </body>
 </html>
