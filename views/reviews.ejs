@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <%- include('./partials/head.ejs', { title: 'Public Bathroom Corners'}) %>
 <body>
+    <%- include('./partials/nav.ejs') %> 
+    <h1>ALL REVIEWS</h1>
     <% for(let review of bathroom.reviews) { %>
-    <h2><%= review.title %></h2>
-    <h3>Average Rating: <%= review.avgRating %></h3>
-    <p><%= review.content %></p>
-    <a href="../full/<%= bathroom.id %>/<%= review.id %>">full review</a>
+    <div class="review-div">
+        <h2><%= review.title %></h2>
+        <h3>Average Rating: <%= review.avgRating.toFixed(2) %></h3>
+        <p><%= review.content %></p>
+        <a href="../full/<%= bathroom.id %>/<%= review.id %>">full review</a>
+        <span><%= review.updatedAt.toDateString() %></span>
+    </div>
     <% } %>
-    <a href="../new/<%= bathroom.id %>">add a review</a>
+    <a id="all-reviews-link" href="../new/<%= bathroom.id %>">add a review</a>
 </body>
 </html>

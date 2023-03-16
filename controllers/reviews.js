@@ -62,7 +62,8 @@ router.get('/edit-post/:bathId/:reviewId', (req, res) => {
             res.render('edit-post', {
                 review: bathroom.reviews.id(req.params.reviewId),
                 id: bathroom.id,
-                name: bathroom.name
+                name: bathroom.name,
+                nickname: bathroom.nickname
             })
         })
 }) 
@@ -95,10 +96,15 @@ router.delete('/delete/:bathId/:reviewId', (req, res) => {
         )
     .then(async bathroom => {
         let average = 0;
-        for(let review of bathroom.reviews) {
-            average += review.avgRating
+        if(bathroom.reviews.length > 0) {
+          for(let review of bathroom.reviews) {
+                average += review.avgRating
+            }
+            bathroom.totalRating = average / bathroom.reviews.length  
+        } else {
+            bathroom.totalRating = average
         }
-        bathroom.totalRating = average / bathroom.reviews.length
+        
         await bathroom.save();
         res.redirect(`/bathroom/${bathroom.googleId}`)
     })

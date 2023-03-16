@@ -2,11 +2,6 @@ const express = require('express')
 const router = express.Router()
 const db = require('../models')
 
-router.get('/', (req, res) => {
-    db.Bathrooms.find({})
-        .then(results => res.json(results))
-})
-
 router.get('/:id', (req, res) => {
     db.Bathrooms.find({ googleId: req.params.id })
         .then(bathroom =>  {
@@ -38,19 +33,13 @@ router.post('/create/:id', (req, res) => {
 })
 
 router.put('/update/:id', (req, res) => {
-    db.Bathrooms.findById(req.params.id)
+    db.Bathrooms.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+        )
         .then(bathroom => {
-            let average;
-            let sum = 0
-            for(let review of bathroom.reviews) {
-                sum += review.avgRating
-            }
-            average = sum / bathroom.reviews.length
-            db.Bathrooms.findByIdAndUpdate(
-                bathroom.id,
-                { totalRating: average },
-                { new: true }
-                ) .then (bathroom => res.redirect(`/bathroom/${bathroom.googleId}`))
+         res.redirect('back')
         })
         .catch(err => console.log(err))
 

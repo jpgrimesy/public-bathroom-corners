@@ -4,28 +4,54 @@
 <body>
     <%- include('./partials/nav.ejs') %>  
     <div id="bathroom-info">
-        <h1><%= bathroom.name %></h1>
-        <p><%= bathroom.address %></p>
+        <% if(bathroom.name !== ''){ %>
+            <div id="name-address">
+                <h1>"<%= bathroom.nickname %>"</h1>
+                <h2>(<%= bathroom.name %>)</h2>
+                <p><%= bathroom.address %></p>
+            </div>
+        <% } else { %>
+        <div id="name-address">
+            <h1><%= bathroom.name %></h1>
+            <p><%= bathroom.address %></p>
+        </div>
+        <% } %>
+        <div class="divider"></div>
+        <div>
+            <img src="/images/no-photo.jpg">
+        </div>
+        <div class="divider"></div>
+        <h2>Reviews:</h2>
         
         <% if(bathroom.reviews.length > 0 && bathroom.reviews.length > 3) { %>
-            <% for(let i = 0; i < 3; i++) { %>
-                <p><%= bathroom.reviews[i].title %></p>
-                <p><%= bathroom.reviews[i].avgRating %></p>
+           <% for(let i = 0; i < 3; i++) { %>
+                <div class="comment-div"> 
+                <h3><%= bathroom.reviews[i].title %></h3>
+                <p>Rating: <%= bathroom.reviews[i].avgRating.toFixed(2) %></p>
                 <p><%= bathroom.reviews[i].content %></p>
-            <% } %>
-            <a href="../reviews/index/<%= bathroom.id %>">see all reviews</a>
+                <span><%= bathroom.reviews[i].updatedAt.toUTCString() %></span>
+                </div>
+            <% } %>           
         <% } else if(bathroom.reviews.length > 0){ %>
-            <% for(let i = 0; i < bathroom.reviews.length; i++) { %>
-                <p><%= bathroom.reviews[i].title %></p>
-                <p><%= bathroom.reviews[i].avgRating %></p>
+           <% for(let i = 0; i < bathroom.reviews.length; i++) { %>
+            <div class="comment-div">     
+                <h3><%= bathroom.reviews[i].title %></h3>
+                <p>Averaged Rating: <%= bathroom.reviews[i].avgRating.toFixed(2) %></p>
                 <p><%= bathroom.reviews[i].content %></p>
+                <span><%= bathroom.reviews[i].updatedAt.toUTCString() %></span>
+            </div>
             <% } %>
-            <a href="../reviews/index/<%= bathroom.id %>">see all reviews</a>
+            
         <% } else { %>
-        No reviews yet. Be the first to leave a <a href="../reviews/new/<%= bathroom.id %>">review</a>!
+        No reviews yet. Be the first to leave a <a href="../reviews/new/<%= bathroom.id %>">review!</a>
         <% } %>
-        <br />
+      
+  
+        <% if(bathroom.reviews.length > 0) { %>
+        <a href="../reviews/index/<%= bathroom.id %>">see all reviews</a>
         <a href="../reviews/new/<%= bathroom.id %>">add a review</a>
+        <% } %>
+        
     </div>
 </body>
 </html>

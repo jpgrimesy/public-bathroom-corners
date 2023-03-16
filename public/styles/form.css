@@ -1,0 +1,41 @@
+.form {
+    margin: auto 20vw;
+    background-color: #433F3E;
+    padding: 20px;
+    border-radius: 4px;
+}
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: inherit;
+    text-align: right;
+}
+textarea {
+    height: 100px;
+    resize: none;
+    text-align: left;
+}
+input[type="submit"] {
+    
+    margin: 5px 5px;
+    background-color: #5F6556;
+    border: none;
+    width: 8rem;
+    height: 3rem;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+
+}
+input[type="submit"]:hover {
+    background-color: #1B2413;
+}
+input[type="number"] {
+    appearance: initial;
+}

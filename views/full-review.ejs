@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <%= review %>
-    <a href="../../edit-post/<%= id %>/<%= review.id %>">edit post</a>
-
+    <html lang="en">
+        <%- include('./partials/head.ejs', { title: 'Public Bathroom Corners'}) %>
+    <body>
+        <%- include('./partials/nav.ejs') %> 
+    <div class="full-review-div">
+        
+        <h2><%= review.title%></h2>
+        <div>
+            <img src="/images/no-photo.jpg">
+        </div>
+        <p>Written by: <%= review.reviewerName %></p>
+        <p>Cleanliness Rating: <%= review.cleanRating %></p>
+        <p>Privacy Rating: <%= review.privacyRating %></p>
+        <p>Amenity Rating: <%= review.amenityRating %></p>
+        <br />
+        <span><%= review.content %></span>
+        <br /> <br />
+        <p>Created on: <%= review.createdAt %></p>
+        <% if (review.createdAt !== review.updatedAt) { %>
+        <p>Updated on: <%= review.updatedAt %></p>
+        <% } %>
+        <br />
+        <a href="../../edit-post/<%= id %>/<%= review.id %>">edit post</a>
+    </div>
 </body>
 </html>

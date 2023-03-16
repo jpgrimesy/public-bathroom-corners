@@ -8,6 +8,7 @@ body,html {
     text-align: center;
     margin: 0 0;
     font-family: 'Ubuntu', sans-serif;
+    color: white;
 }
 nav {
     background-color: #1B2413;
@@ -66,12 +67,106 @@ input[type=submit]:hover {
     background-color: #433F3E;
     color: white;
     margin: 100px auto;
-    height: 60%;
     width: 90%;
     max-width: 1200px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+   
 }
 #bathroom-info a{
-    color: #5F6556;
+    color: white;
     font-size: 18px;
+    margin: 0 auto;
+}
+.divider {
+    width: 90%;
+    border-bottom: 2px solid #292825;
+    margin: 20px auto;
+}
+.comment-div {
+    background-color: #292825;  
+    width: 90%;
+    margin: 15px auto;
+    text-align: left;
+    border-radius: 10px;
+}
+.comment-div h3 {
+    
+    padding-left: 60px;
+    margin-bottom: 0;
+}
+.comment-div p {
+    padding-left: 150px;
+    padding-right: 20px;
+}
+.comment-div span {
+    float: right;
+    font-style: italic;
+    padding-right: 30px;
+    margin-bottom: 15px;
+}
+.review-div {
+    width: 70%;
+    background-color: #433F3E;
+    border: 5px solid #292825;
+    border-radius: 5px;
+    margin: 20px auto;
+    padding: 10px;
+    box-shadow: 10px 10px 5px #5F6556;
+
+}
+.review-div h2 {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.review-div h3 {
+    margin-top: 0;
+}
+.review-div a {
+    font-family: inherit;
+    color: white;
+    margin-left: 80%;
+    background-color: #1B2413;
+    font-size: 18px;
+    padding: 8px;
+}
+.review-div a:hover {
+    background-color: #5F6556;
+}
+.review-div span {
+    display: block;
+    font-style: italic;
+}
+#all-reviews-link {
+    color: white;
+    font-size: 18px;
+    font-family: inherit;
+}
+.full-review-div {
+    background-color: #433F3E;
+    margin: 0 auto;
+    width: 70%;
+    max-width: 1300px;
+    margin-top: 200px;
+    padding: 20px;
+}
+.full-review-div p:last-of-type, .full-review-div p:nth-last-of-type(2){
+    font-style: italic;
+    font-size: 14px;
+}
+
+.full-review-div p {
+    margin: 5px auto;
+    font-size: 18px;
+}
+.full-review-div a {
+    color: white;
+    background-color: #5F6556;
+    padding: 8px;
+    text-decoration: none;
+    font-size: 18px;
+}
+.full-review-div a:hover {
+    background-color: #1B2413;
 }

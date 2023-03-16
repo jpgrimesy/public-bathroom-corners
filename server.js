@@ -28,9 +28,7 @@ app.use('/reviews', reviewsRoute)
 app.get('/', (req, res) => {
    res.render('index')
 })
-app.get('/index', (req, res) => {
-    res.render('index')
-})
+
 app.get('/test', (req, res) => {
     db.api.locate(req.query.q)
         .then(async data => {
@@ -40,7 +38,6 @@ app.get('/test', (req, res) => {
             }
             db.api.nearby(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
             .then(async results => {
-               
                const coordinates = []
                for(let result of results.results) {
                 const address = await db.api.reverseLocate(result.geometry.location.lat, result.geometry.location.lng)
@@ -65,21 +62,11 @@ app.get('/test', (req, res) => {
                })
             })
         })
-   
-})
-app.get('/seed', function (req, res) {
-    db.Bathrooms.deleteMany({})
-        .then(deletedProducts => {
-            console.log(`Deleted ${deletedProducts.length} prodcuts`)
-
-            db.Bathrooms.insertMany(db.seedBathrooms)
-                .then(productsAdded => {
-                    console.log(`Added ${productsAdded.length} things`)
-                    res.json(productsAdded)
-                })
-        })
 })
 
+app.get('*', function (req, res) {
+    res.render('404')
+});
 app.listen(process.env.PORT, function () {
     console.log('Express is listening to port', process.env.PORT);
 });
