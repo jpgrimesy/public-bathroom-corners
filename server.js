@@ -46,16 +46,16 @@ app.get('/test', (req, res) => {
                 const address = await db.api.reverseLocate(result.geometry.location.lat, result.geometry.location.lng)
                 const rating = await db.Bathrooms.find({googleId: result.place_id})
                
-                
-                
-               
-
                 const loc = {
                     lat: result.geometry.location.lat,
                     lng: result.geometry.location.lng,
                     name: result.name,
                     id: result.place_id,
-                    address: address.results[0].formatted_address
+                    address: address.results[0].formatted_address,
+                    rating: 0
+                }
+                if(rating.length > 0) {
+                    loc.rating = rating[0].totalRating
                 }
                 coordinates.push(loc)
                }

@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
-#map {
-    height: 50%;
-    width: 50%;
-}
+
 body,html {
     height: 100%;
     width: 100%;
@@ -39,8 +36,6 @@ nav {
 }
 #nav-links {
     align-self: flex-end;
-    
-   
 }
 .search {
     margin-top: clamp(200px, 25vh, 250px);
@@ -66,4 +61,17 @@ input[type=submit] {
 }
 input[type=submit]:hover {
     background-color: #292825;
+}
+#bathroom-info {
+    background-color: #433F3E;
+    color: white;
+    margin: 100px auto;
+    height: 60%;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 10px;
+}
+#bathroom-info a{
+    color: #5F6556;
+    font-size: 18px;
 }

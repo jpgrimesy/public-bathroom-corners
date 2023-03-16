@@ -45,5 +45,8 @@
         <br />
         <input type="submit" value="Submit">
     </form>
+    <form method="POST" action="/reviews/delete/<%= id %>/<%= review.id %>?_method=DELETE">
+        <input type="submit" value="Delete Review">
+    </form>
 </body>
 </html>

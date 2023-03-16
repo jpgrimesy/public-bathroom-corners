@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const db = require('../models')
 
-router.get('/:id', (req, res) => {
+router.get('/index/:id', (req, res) => {
     db.Bathrooms.findById(req.params.id)
         .then(bathroom => {
             res.render('reviews', {
@@ -11,7 +11,7 @@ router.get('/:id', (req, res) => {
         })
 })
 
-router.get('/:bathId/:reviewId', (req, res) => {
+router.get('/full/:bathId/:reviewId', (req, res) => {
     db.Bathrooms.findById(req.params.bathId)
         .then(bathroom => {
             res.render('full-review', {
@@ -21,13 +21,15 @@ router.get('/:bathId/:reviewId', (req, res) => {
         })
 })
 
-router.get('/new-post/:id', (req, res) => {
+router.get('/new/:id', (req, res) => {
     db.Bathrooms.findById(req.params.id)
         .then(bathroom => {
             res.render('new-post', {
                 bathroom: bathroom
             })
         })
+        .catch(err => console.log(err))
+
 })
 
 router.post('/post/:id', (req, res) => {

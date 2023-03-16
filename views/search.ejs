@@ -2,20 +2,25 @@
 <html lang="en">
 <head>
     <%- include('./partials/head.ejs', { title: 'Public Bathroom Search Results'}) %>
-    <link rel="stylesheet" href="search-results.css">
+    <link rel="stylesheet" href="styles/search-results.css">
     <script src="js/search.js" defer></script>
 </head>
 <body>
     <%- include('./partials/nav.ejs') %>  
-    <div class="results-container" style="height:80%; width: 80%;background-color: white;">
+    <div id="results-container">
         <div id="map"></div>
         <div id="info-container">
             <% for(let result of results){ %>
                 <div class="bathroom-details">
-                    <li><%= result.name %></li>
-                    <li><%= result.address %></li>
+                    <h3><%= result.name %></h3>
+                    <p><i><%= result.address %></i></p>
+                    <% if(result.rating > 0){ %>
+                    <span>Rating: <%= result.rating.toFixed(2) %></span>
+                    <% } else { %>
+                    <span>Rating: <i>No reviews yet</i></span>
+                    <% } %>
                     <form method="POST" action="/bathroom/create/<%= result.id %>">
-                    <input type="submit" value="details">
+                    <input type="submit" value="more info">
                     </form>
                 </div>  
             <% } %>

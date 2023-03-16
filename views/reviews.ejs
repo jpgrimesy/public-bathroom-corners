@@ -11,7 +11,8 @@
     <h2><%= review.title %></h2>
     <h3>Average Rating: <%= review.avgRating %></h3>
     <p><%= review.content %></p>
-    <a href="<%= bathroom.id %>/<%= review.id %>">full review</a>
+    <a href="../full/<%= bathroom.id %>/<%= review.id %>">full review</a>
     <% } %>
+    <a href="../new/<%= bathroom.id %>">add a review</a>
 </body>
 </html>
