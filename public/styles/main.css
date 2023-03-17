@@ -8,7 +8,6 @@ body,html {
     text-align: center;
     margin: 0 0;
     font-family: 'Ubuntu', sans-serif;
-    color: white;
 }
 nav {
     background-color: #1B2413;
@@ -38,8 +37,11 @@ nav {
 #nav-links {
     align-self: flex-end;
 }
+.main-logo {
+    margin-top: clamp(150px, 25vh, 200px);
+}
 .search {
-    margin-top: clamp(200px, 25vh, 250px);
+    margin-top: 20px;
 }
 .search-btn {
     display: inline;
@@ -47,7 +49,7 @@ nav {
 input[type=search] {
     width: 400px;
     height: 35px;
-    font-size: 24px;
+    font-size: 20px;
     border-radius: 25px;
     padding-left: 25px;
 }
@@ -169,4 +171,21 @@ input[type=submit]:hover {
 }
 .full-review-div a:hover {
     background-color: #1B2413;
+}
+.bathroom-btn {
+    text-align: right;
+    margin-right: 5px;
+    padding-bottom: 5px;
+}
+.bathroom-btn button {
+    background-color: #5F6556;
+    border: none;
+    text-align: center;
+}
+.bathroom-btn button:hover {
+    background-color: #1B2413;
+}
+.bathroom-btn img {
+    width: 20px;
+    filter: invert(1);
 }

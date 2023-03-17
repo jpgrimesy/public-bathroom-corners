@@ -2,7 +2,10 @@
 <html lang="en">
     <%- include('./partials/head.ejs', { title: 'Public Bathroom Corners'}) %>
 <body>
-    <%- include('./partials/nav.ejs') %>  
+    <%- include('./partials/nav.ejs') %> 
+    <div class="main-logo">
+        <img src="/images/main-logo.png">
+    </div> 
     <div class="search">
         <form class="search-btn" method="get" action="/test">
             <input id="search-bar" type="search" placeholder="Enter Address" name="q"required>

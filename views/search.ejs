@@ -22,6 +22,11 @@
                     <form method="POST" action="/bathroom/create/<%= result.id %>">
                     <input type="submit" value="more info">
                     </form>
+                    <div class="bathroom-btn">
+                        <button>
+                            <img id="<%= result.lat %>, <%= result.lng %>" src="/images/target.png">
+                        </button>
+                    </div>
                 </div>  
             <% } %>
         </div>

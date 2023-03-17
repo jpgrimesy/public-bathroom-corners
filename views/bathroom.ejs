@@ -4,16 +4,18 @@
 <body>
     <%- include('./partials/nav.ejs') %>  
     <div id="bathroom-info">
-        <% if(bathroom.name !== ''){ %>
+        <% if(bathroom.nickname !== ''){ %>
             <div id="name-address">
                 <h1>"<%= bathroom.nickname %>"</h1>
                 <h2>(<%= bathroom.name %>)</h2>
                 <p><%= bathroom.address %></p>
+                <p>Rating: <%= bathroom.totalRating.toFixed(2) %></p>
             </div>
         <% } else { %>
         <div id="name-address">
             <h1><%= bathroom.name %></h1>
             <p><%= bathroom.address %></p>
+            <p>Rating: <%= bathroom.totalRating.toFixed(2) %></p>
         </div>
         <% } %>
         <div class="divider"></div>
