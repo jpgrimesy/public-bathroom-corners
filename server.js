@@ -28,7 +28,9 @@ app.use('/reviews', reviewsRoute)
 app.get('/', (req, res) => {
    res.render('index')
 })
-
+app.get('/nearme', (req, res) => {
+    res.render('nearme')
+})
 app.get('/test', (req, res) => {
     db.api.locate(req.query.q)
         .then(async data => {

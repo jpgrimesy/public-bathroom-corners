@@ -20,7 +20,7 @@
                     <span>Rating: <i>No reviews yet</i></span>
                     <% } %>
                     <form method="POST" action="/bathroom/create/<%= result.id %>">
-                    <input type="submit" value="more info">
+                        <input type="submit" value="more info">
                     </form>
                     <div class="bathroom-btn">
                         <button>
@@ -32,16 +32,12 @@
         </div>
     </div>
     <script>
-       
-      
         document.addEventListener('DOMContentLoaded', function() {
-                centerLoc = <%- JSON.stringify(center) %>
-                for(let result of <%- JSON.stringify(results) %>) {
-                    myPlace.push(result)
-                }
-               
-               
-            })
+            centerLoc = <%- JSON.stringify(center) %>
+            for(let result of <%- JSON.stringify(results) %>) {
+                myPlace.push(result)
+            }
+        })
       </script>
    
   </body>

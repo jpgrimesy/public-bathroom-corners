@@ -17,19 +17,19 @@ router.post('/create/:id', (req, res) => {
         .then(result => {
             if(result.length === 0) {
                 db.api.placeId(req.params.id)
-        .then(async bathroom => {
-            db.Bathrooms.create({
-                name: bathroom.result.name,
-                googleId: bathroom.result.place_id,
-                address: bathroom.result.formatted_address
+                    .then(async bathroom => {
+                            db.Bathrooms.create({
+                            name: bathroom.result.name,
+                            googleId: bathroom.result.place_id,
+                            address: bathroom.result.formatted_address
+                        })
+                        .then(() => res.redirect(`/bathroom/${req.params.id}`))
+                    })
+                } else {
+                    res.redirect(`/bathroom/${req.params.id}`)
+                }
             })
-            .then(() => res.redirect(`/bathroom/${req.params.id}`))
-        })
-            } else {
-                res.redirect(`/bathroom/${req.params.id}`)
-            }
-        })
-    .catch(err => console.log(err))
+        .catch(err => console.log(err))
 })
 
 router.put('/update/:id', (req, res) => {

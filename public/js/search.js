@@ -13,11 +13,12 @@ function center() {
     center: centerLoc,
     zoom: 13,
   });
- 
-  
-  
 
-  const locationButton = document.createElement("button");
+  const centerMarker = new google.maps.Marker({
+    position: centerLoc,
+    map: map,
+    icon:'/images/center.png'
+  })
 
   myPlace.forEach(result => {
     const loc = {
@@ -47,48 +48,7 @@ function center() {
         })
        
     }, myPlace.indexOf(result) * 200)
-    
-})
-
-    // // Try HTML5 geolocation.
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(
-    //     (position) => {
-    //       const pos = {
-    //         lat: position.coords.latitude,
-    //         lng: position.coords.longitude,
-    //       };
-
-    //       infoWindow.setPosition(pos);
-    //       infoWindow.setContent('this is here');
-    //       infoWindow.open(map);
-    //       map.setCenter(pos);
-    //       const marker = new google.maps.Marker({
-    //         position: pos,
-    //         map: map,
-    //         icon: '/images/toilet.png'
-    //       });
-    //       console.log(pos.lat)
-    //     },
-    //     () => {
-    //       handleLocationError(true, infoWindow, map.getCenter());
-    //     }
-    //   );
-    // } else {
-    //   // Browser doesn't support Geolocation
-    //   handleLocationError(false, infoWindow, map.getCenter());
-    // }
- 
-}
-
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(
-    browserHasGeolocation
-      ? "Error: The Geolocation service failed."
-      : "Error: Your browser doesn't support geolocation."
-  );
-  infoWindow.open(map);
+  })
 }
 
 function toggleBounce(marker) {
@@ -104,8 +64,6 @@ details.forEach(div => {
 
     map.setCenter({ lat: lat, lng: lng })
     map.setZoom(14)
-
-    
   })
 })
 
