@@ -21,7 +21,8 @@ router.post('/create/:id', (req, res) => {
                             db.Bathrooms.create({
                             name: bathroom.result.name,
                             googleId: bathroom.result.place_id,
-                            address: bathroom.result.formatted_address
+                            address: bathroom.result.formatted_address,
+                            totalRating: 0
                         })
                         .then(() => res.redirect(`/bathroom/${req.params.id}`))
                     })
