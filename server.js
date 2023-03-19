@@ -46,7 +46,7 @@ app.get('/nearme', (req, res) => {
 })
 app.get('/search', (req, res) => {
     db.api.locate(req.query.q)
-    .then(data => {
+    .then(async data => {
         const center = {
             lat: data.results[0].geometry.location.lat,
             lng: data.results[0].geometry.location.lng
