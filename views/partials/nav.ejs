@@ -1,4 +1,5 @@
 <nav>
+    <div id="empty-div"></div>
     <div id="logo"><img src="/images/logo.png"></div>
     <div id="nav-links">
         <a class="nav-link" href="https://pb-corners.herokuapp.com/">Home</a>
@@ -8,6 +9,17 @@
         <% } else { %>
             <a class="nav-link" href="/auth/google">Login</a>
         <% } %>
-         
     </div>
+    <div id="hamburger-btn"><button><img src="/images/hamburger.png"></button></div>
 </nav>
+<div id="links-dropdown">
+    <ul>
+    <li><a class="nav-link" href="https://pb-corners.herokuapp.com/">Home</a></li>
+    <% if (user) { %>
+        <li><a class="nav-link" href="#">Your Profile</a></li>
+        <li><a class="nav-link" href="/logout">Log out</a></li>
+    <% } else { %>
+        <li><a class="nav-link" href="/auth/google">Login</a></li> 
+    <% } %>
+    </ul>
+</div>

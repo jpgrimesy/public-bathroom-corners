@@ -12,33 +12,67 @@ body,html {
 nav {
     background-color: #1B2413;
     width: 100%;
+    height: 60.5px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    position: relative;
+}
+#empty-div {
+    width: 50%;
 }
 #logo {
-    position: relative;
     margin: 0 auto;
     background-color: #5F6556;
     width: 220px;
- 
+    display: block;
     border-radius: 10px;
-    display: inline;
+    height: 60.5px;
 }
 .nav-link {
     color: white;
     font-size: 20px;
     text-decoration: none;
-    margin-right: 20px;    
+    padding-right: 20px;    
 }
 .nav-link:hover {
     color: #080809;
     background-color: #5F6556;
 }
 #nav-links {
-    align-self: flex-end;
+   align-self: flex-end;
+   width: 50%;
+   text-align: right;
+   display: inline;
 }
 .main-logo {
     margin-top: clamp(150px, 25vh, 200px);
+}
+#hamburger-btn button img  {
+    width: 40px;
+    filter: invert(1);
+}
+#hamburger-btn button {
+    background-color: #5F6556;
+    border: none;
+    height: 100%;
+    width: 60px;
+}
+#hamburger-btn {
+    display: none;
+}
+#links-dropdown {
+    text-align: right;
+    display: none;
+    width: 100%;
+    background-color: #292825;
+}
+#links-dropdown ul {
+    list-style-type: none;
+    margin-top: 0;
+    padding-top: 10px;
+}
+#links-dropdown ul li {
+    margin-bottom: 5px;
 }
 .search {
     margin-top: 20px;
@@ -189,6 +223,30 @@ input[type=submit]:hover {
     width: 20px;
     filter: invert(1);
 }
-#photo {
+
+@media screen and (max-width: 768px) {
+    #photo {
     width: 90%;
+    }
+    .review-div a {
+    margin-left: 65%;
+    padding: 8px;
+    }
+    #hamburger-btn {
+        display: inline;
+        width: 50%;
+        text-align: right;
+    }
+    #hamburger-btn button:hover {
+        background-color: #433F3E;
+    } 
+    #nav-links {
+        display: none;
+    }
+}
+@media screen and (max-width: 425px) {
+    .main-logo img {
+    width: 100%;
+    min-width: 320px;
+    }
 }

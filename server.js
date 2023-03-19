@@ -31,12 +31,9 @@ app.use(function(req, res, next) {
     res.locals.user = req.user;
     next()
 })
-const setUser = (req, res, next) => {
-    req.user = res.locals.user;
-    next()
-}
-app.use('/bathroom', setUser, bathroomsRoute)
-app.use('/reviews', setUser, reviewsRoute)
+
+app.use('/bathroom', bathroomsRoute)
+app.use('/reviews', reviewsRoute)
 
 app.get('/', (req, res) => {
    res.render('home')
