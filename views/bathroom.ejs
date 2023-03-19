@@ -45,13 +45,18 @@
             <% } %>
             
         <% } else { %>
-        No reviews yet. Be the first to leave a <a href="../reviews/new/<%= bathroom.id %>">review!</a>
+        No reviews yet. 
+        <% if (user) { %>
+        Be the first to leave a <a href="../reviews/new/<%= bathroom.id %>">review!</a>
+        <% } %>
         <% } %>
       
   
         <% if(bathroom.reviews.length > 0) { %>
         <a href="../reviews/index/<%= bathroom.id %>">see all reviews</a>
+        <% if (user) { %>
         <a href="../reviews/new/<%= bathroom.id %>">add a review</a>
+        <% } %>
         <% } %>
         
     </div>

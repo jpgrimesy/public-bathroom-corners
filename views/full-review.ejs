@@ -15,7 +15,7 @@
         <div>
             <img src="/images/no-photo.jpg">
         </div>
-        <p>Written by: <%= review.reviewerName %></p>
+        <p>Written by: <%= review.userName %></p>
         <p>Cleanliness Rating: <%= review.cleanRating %></p>
         <p>Privacy Rating: <%= review.privacyRating %></p>
         <p>Amenity Rating: <%= review.amenityRating %></p>
@@ -27,7 +27,9 @@
         <p>Updated on: <%= review.updatedAt %></p>
         <% } %>
         <br />
+        <% if (user?._id.equals(review.user)) { %>
         <a href="../../edit-post/<%= id %>/<%= review.id %>">edit post</a>
+        <% } %>
     </div>
 </body>
 </html>

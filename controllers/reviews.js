@@ -1,74 +1,80 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../models')
+const bathroom = require('../models/bathroom')
+
+const ensureLoggedIn = (req, res, next) => {
+    if ( req.isAuthenticated() ) return next();
+    res.redirect('/auth/google');
+}
 
 router.get('/index/:id', (req, res) => {
     db.Bathrooms.findById(req.params.id)
-        .then(bathroom => {
-            res.render('reviews', {
-                bathroom: bathroom
-            })
+    .then(bathroom => {
+        res.render('reviews', {
+            bathroom: bathroom
         })
+    })
 })
 
 router.get('/full/:bathId/:reviewId', (req, res) => {
     db.Bathrooms.findById(req.params.bathId)
-        .then(bathroom => {
-            res.render('full-review', {
-                review: bathroom.reviews.id(req.params.reviewId),
-                id: bathroom.id
-            })
+    .then(bathroom => {
+        res.render('full-review', {
+            review: bathroom.reviews.id(req.params.reviewId),
+            id: bathroom.id
         })
+    })
 })
 
-router.get('/new/:id', (req, res) => {
+router.get('/new/:id', ensureLoggedIn, (req, res) => {
     db.Bathrooms.findById(req.params.id)
-        .then(bathroom => {
-            res.render('new-post', {
-                bathroom: bathroom
-            })
+    .then(bathroom => {
+        res.render('new-post', {
+            bathroom: bathroom
         })
-        .catch(err => console.log(err))
-
+    })
+    .catch(err => console.log(err))
 })
 
-router.post('/post/:id', (req, res) => {
-    db.Bathrooms.findByIdAndUpdate(
-        req.params.id,
-        { $push: { reviews: req.body } },
-        { new: true }
-        ).then(async bathroom => {
-                db.Bathrooms.findById(bathroom.id)
-                .then(async bathroom => {
-                    let average;
-                    let sum = 0
-                    for(let review of bathroom.reviews) {
-                        sum += review.avgRating
-                    }
-                    average = sum / bathroom.reviews.length
-                    db.Bathrooms.findByIdAndUpdate( 
-                        req.params.id,
-                        { totalRating: average },
-                        { new: true }
-                        ).then(bathroom => res.redirect('/bathroom/' + bathroom.googleId))
-                })
-         })
-        .catch(err => console.log(err))
+router.post('/post/:id', ensureLoggedIn, (req, res) => {
+    db.Bathrooms.findByIdAndUpdate(req.params.id)
+    .then(async bathroom => {
+        req.body.user = req.user._id;
+        req.body.userName = req.user.name;
+        bathroom.reviews.push(req.body);
+        bathroom.save()
+        db.Bathrooms.findById(req.params.id)
+        .then(async bathroom => {
+            let average;
+            let sum = 0
+            for(let review of bathroom.reviews) {
+                sum += review.avgRating
+            }
+            average = sum / bathroom.reviews.length
+            db.Bathrooms.findByIdAndUpdate( 
+                req.params.id,
+                { totalRating: average },
+                { new: true }
+                ).then(bathroom => res.redirect('/bathroom/' + bathroom.googleId))
+        })
+    })
+    .catch(err => console.log(err))
 })
 
-router.get('/edit-post/:bathId/:reviewId', (req, res) => {
+router.get('/edit-post/:bathId/:reviewId', ensureLoggedIn, (req, res) => {
     db.Bathrooms.findById(req.params.bathId)
-        .then(bathroom => {
-            res.render('edit-post', {
-                review: bathroom.reviews.id(req.params.reviewId),
-                id: bathroom.id,
-                name: bathroom.name,
-                nickname: bathroom.nickname
-            })
+    .then(bathroom => {
+        res.render('edit-post', {
+            review: bathroom.reviews.id(req.params.reviewId),
+            id: bathroom.id,
+            name: bathroom.name,
+            nickname: bathroom.nickname
         })
+    })
 }) 
 
-router.put('/edit/:bathId/:reviewId', (req, res) => {
+router.put('/edit/:bathId/:reviewId', ensureLoggedIn, (req, res) => {
     const { reviewerName, title, cleanRating, privacyRating, amenityRating, content } = req.body;
     const newAverage = (parseInt(cleanRating) + parseInt(privacyRating) + parseInt(amenityRating)) / 3
     db.Bathrooms.findOneAndUpdate(
@@ -88,7 +94,7 @@ router.put('/edit/:bathId/:reviewId', (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.delete('/delete/:bathId/:reviewId', (req, res) => {
+router.delete('/delete/:bathId/:reviewId', ensureLoggedIn, (req, res) => {
     db.Bathrooms.findByIdAndUpdate(
         req.params.bathId,
         { $pull: { reviews: { _id: req.params.reviewId }}},

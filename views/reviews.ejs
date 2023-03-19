@@ -18,6 +18,8 @@
         <span><%= review.updatedAt.toDateString() %></span>
     </div>
     <% } %>
+    <% if (user) { %>
     <a id="all-reviews-link" href="../new/<%= bathroom.id %>">add a review</a>
+    <% } %>
 </body>
 </html>

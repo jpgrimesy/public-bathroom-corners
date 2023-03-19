@@ -10,5 +10,5 @@ const mongodbUri = process.env.MONGODBURI;
 module.exports = {
     Bathrooms: require('./bathroom'),
     api: require('./api'),
-    seedBathrooms: require('./seed')
+    User: require('./user')
 }

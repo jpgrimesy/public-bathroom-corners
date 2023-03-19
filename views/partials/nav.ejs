@@ -2,5 +2,12 @@
     <div id="logo"><img src="/images/logo.png"></div>
     <div id="nav-links">
         <a class="nav-link" href="http://localhost:3000/">Home</a>
+        <% if (user) { %>
+            <a class="nav-link" href="#">Your Profile</a>
+            <a class="nav-link" href="/logout">Log out</a>
+        <% } else { %>
+            <a class="nav-link" href="/auth/google">Login</a>
+        <% } %>
+         
     </div>
 </nav>

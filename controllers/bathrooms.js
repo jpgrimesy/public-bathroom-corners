@@ -42,7 +42,6 @@ router.put('/update/:id', (req, res) => {
          res.redirect('back')
         })
         .catch(err => console.log(err))
-
 })
 
 module.exports = router

@@ -49,7 +49,7 @@ function nearMe(lat, lng) {
   const center = new google.maps.LatLng(lat, lng)
   const request = {
     location: center,
-    radius: 8000,
+    radius: 4828,
     keyword: ['public toilet']
   }
   const service = new google.maps.places.PlacesService(map)
@@ -146,6 +146,5 @@ function toggleBounce(marker) {
   marker.setAnimation(google.maps.Animation.BOUNCE);
   setTimeout(() => marker.setAnimation(null), 1500)
 }
-
 
 window.initMap = center;
