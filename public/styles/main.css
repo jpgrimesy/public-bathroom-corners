@@ -22,7 +22,7 @@ nav {
     width: 220px;
  
     border-radius: 10px;
-    display: inline-block;
+    display: inline;
 }
 .nav-link {
     color: white;
@@ -188,4 +188,7 @@ input[type=submit]:hover {
 .bathroom-btn img {
     width: 20px;
     filter: invert(1);
+}
+#photo {
+    width: 90%;
 }

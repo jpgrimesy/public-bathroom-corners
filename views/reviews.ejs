@@ -14,7 +14,7 @@
         <h2><%= review.title %></h2>
         <h3>Average Rating: <%= review.avgRating.toFixed(2) %></h3>
         <p><%= review.content %></p>
-        <a href="../full/<%= bathroom.id %>/<%= review.id %>">full review</a>
+        <a href="../full/<%= bathroom.id %>/<%= review.id %>">full&nbsp;review</a>
         <span><%= review.updatedAt.toDateString() %></span>
     </div>
     <% } %>
