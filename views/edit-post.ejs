@@ -20,7 +20,7 @@
     <div class="form">
         <form method="POST" action="/reviews/edit/<%= id %>/<%= review.id %>?_method=PUT">
             <label for="title">Title:</label>
-            <input type="text" id="text" name="title" value="<%= review.title %>">
+            <input type="text" id="text" name="title" value="<%= review.title %>" required>
             <br />
             <label for="clean-rating">Cleanliness Rating (between 1 and 5): </label>
             <select id="rating" name="cleanRating" required>
