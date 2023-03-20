@@ -74,6 +74,10 @@ app.get('/search', (req, res) => {
             })
         })
     })
+    .catch(err => {
+        console.log(err)
+        res.redirect('/')
+    })
 })
 app.get('/auth/google', passport.authenticate(
     'google',
