@@ -44,7 +44,8 @@ router.post('/post/:id', ensureLoggedIn, (req, res) => {
         req.body.userName = req.user.name;
         bathroom.reviews.push(req.body);
         bathroom.save()
-        db.Bathrooms.findById(req.params.id)
+        .then(async ()=> {
+            db.Bathrooms.findById(req.params.id)
         .then(async bathroom => {
             let average;
             let sum = 0
@@ -57,6 +58,8 @@ router.post('/post/:id', ensureLoggedIn, (req, res) => {
                 { totalRating: average },
                 { new: true }
                 ).then(bathroom => res.redirect('/bathroom/' + bathroom.googleId))
+        })
+        
         })
     })
     .catch(err => console.log(err))
